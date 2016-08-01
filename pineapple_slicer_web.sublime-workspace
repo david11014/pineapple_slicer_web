@@ -1,0 +1,405 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"ol",
+				"oldCameraPos"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"con",
+				"control_block"
+			],
+			[
+				"B",
+				"Box_M"
+			],
+			[
+				"Bo",
+				"Box"
+			],
+			[
+				"v",
+				"Vector3"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"Fil",
+				"File_menu"
+			],
+			[
+				"op",
+				"openfile"
+			],
+			[
+				"im",
+				"img"
+			],
+			[
+				"me",
+				"member"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"oc",
+				"opacity	opacity()"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"a",
+				"absolute"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"tra",
+				"transition"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"he",
+				"height	.height()"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"tr",
+				"transition"
+			],
+			[
+				"web",
+				"webkit-filter"
+			],
+			[
+				"ligh",
+				"lighten-2"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 7034,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ina",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 167.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/index.html",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/config.rb",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/package.bat",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/TrackballControls.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/test.bat",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/THREE.MeshLine.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/three.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/index.html",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/windows.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/run_debug.bat",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/STLLoader.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/index2.html",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/res/test.STL",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/draw.js",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/run.bat",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/package.json",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/nw/test.nw/index.html",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/nw/index.html",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/make.bat",
+		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/pak.bat",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/js/materialize.min.js",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_collapsible.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_grid.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_sideNav.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/data/data.js",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/data/member.js",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/css/materialize.css",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/js/dataload.js",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/index.html",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/materialize.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_cards.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_navbar.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/materialize.css.map",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_color.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_variables.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/components/_costum.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/sass/costum.scss",
+		"/C/Users/user/Documents/GitHub/maker-village.github.io/README.md",
+		"/C/Users/user/Documents/GitHub/home page/index.html",
+		"/C/Users/user/Documents/GitHub/home page/sass/components/_navbar.scss",
+		"/C/Users/user/Documents/GitHub/home page/sass/components/_variables.scss",
+		"/C/Users/user/Documents/GitHub/home page/sass/components/_color.scss",
+		"/C/Users/user/Documents/GitHub/home page/css/materialize.css",
+		"/C/Users/user/Documents/GitHub/home page/sass/components/_mixins.scss",
+		"/C/Users/user/Documents/GitHub/home page/css/LOGO-BG.css",
+		"/C/Users/user/Documents/GitHub/home page/sass/materialize.scss",
+		"/C/Users/user/Documents/GitHub/home page/MVHomePage/config.rb",
+		"/C/Users/user/Documents/GitHub/home page/MVHomePage/sass/components/_color.scss",
+		"/C/Users/user/Documents/GitHub/home page/MVHomePage/sass/materialize.scss",
+		"/C/Users/user/Documents/GitHub/home page/MVHomePage/stylesheets/materialize.css",
+		"/C/Users/user/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/user/Google 雲端硬碟/maker village/home page/MVHomePage/sass/materialize.scss",
+		"/C/Users/user/Google 雲端硬碟/maker village/home page/MVHomePage/stylesheets/materialize.css",
+		"/C/Users/user/Google 雲端硬碟/maker village/home page/MVHomePage/config.rb"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\user\\Documents\\GitHub\\pineapple_slicer_web"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"multiplyScala",
+			"multiplyScalar",
+			"_eye",
+			"_state",
+			"renderer.setSize(width, height); ",
+			"renderer",
+			"center",
+			"STATE",
+			"();\n",
+			"PID",
+			"hide-on-med-and-down ",
+			"darken-4",
+			"5",
+			"空間設備",
+			"pic/first_pic.jpg",
+			"url",
+			"brand-logo",
+			"\";",
+			"\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"graph",
+			"renderer"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 7034,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								281,
+								281
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
+							"rulers":
+							[
+								70
+							],
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"wrap_width": 70
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 45.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 162.0
+	},
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true
+}

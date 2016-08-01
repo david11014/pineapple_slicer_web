@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pineapple slicer</title>
+  <link rel="stylesheet" href="css/uikit.css" />
+  <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="./js/uikit.js"></script>
+    
+  <style>
+
+    #canvas3d{
+      height: 600px;
+    }
+    #nav{
+      height: 3em;
+    }
+    #control_block{
+      min-width: 300px;
+      height: 100%;
+    }
+
+  </style>
+
+  
+</head>
+
+<body>
+  
+  <div class="uk-grid">
+    <div id="nav" class="uk-width-1-1">
+      <h1>navbar</h1>
+      <input id="fileDialog" style="display:none" type="file" accept=".stl" />  
+    </div>
+    <div id="canvas3d" class="uk-width-3-4"></div>
+
+    <div id="control_block" class="uk-width-1-4">
+      <h1>控制區域</h1>
+    </div>  
+  </div>
+  
+   
+
+  <script type="text/javascript" src="./js/three.js"></script> 
+  <script type="text/javascript" src="./js/STLLoader.js"></script>
+  <script type="text/javascript" src="./js/TrackballControls.js"></script>
+  <script>
+    
+    var width = $("#canvas3d").width();
+    var height = $("#canvas3d").height();
+    var near = -1000;
+    var far = 1000;
+    var Box = new THREE.Vector3(150,150,100);
+   
+
+    // Fallback to canvas renderer, if necessary.
+    var renderer = new THREE.WebGLRenderer({ antialias: true });
+    
+    // Create a Three.js scene object.
+    var scene = new THREE.Scene(); 
+    var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, near, far );
+    var directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    var directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+    var ambLight = new THREE.AmbientLight(0xf0f0f0);
+
+    var loader = new THREE.STLLoader();
+    var STLmaterial = new THREE.MeshPhongMaterial( { color: 0xff8533, specular: 0xe65c00, shininess: 200 } );
+    var STLmesh = new THREE.CubeGeometry(10,10, 10);
+
+    var menu = new nw.Menu({ type: 'menubar' });
+
+    var File_menu = new nw.Menu();
+    
+    
+    windows_init();
+    threeInit();
+    animate();
+    render(); 
+    $("#canvas3d").append(renderer.domElement);
+
+    function windows_init(){
+      chooseFile('#fileDialog');
+
+      /**setup menu**/
+      menu.append(new nw.MenuItem({
+        label: 'File',
+        submenu: File_menu
+      }));
+      nw.Window.get().menu = menu;
+
+      //open file
+      File_menu.append(new nw.MenuItem({ label: 'Open File' }));      
+      File_menu.items[0].click = function() {  
+        $('#fileDialog').trigger('click');
+      };
+      //exit
+      File_menu.append(new nw.MenuItem({ label: 'Exit' }));
+      File_menu.items[1].click = function() {  
+        nw.Window.get().close();
+      };
+
+      $("#canvas3d").bind('mousewheel', scale);
+      $(window).resize(resizeThree);
+      
+    }
+    
+    function threeInit(){
+      // Set the size of the WebGL viewport.
+      renderer.setSize(width, height); 
+      renderer.setClearColor( 0xe6ffff, 1);
+
+      //setup camera
+      camera.position.x = Box.x;
+      camera.position.y = -Box.y/2;
+      camera.position.z = Box.z*2; 
+      camera.up = new THREE.Vector3(0,0,1);
+      camera.lookAt(new THREE.Vector3(Box.x/2,Box.y/2,Box.z/2));
+      camera.zoom = 2;
+      
+      //TrackballControl
+      controls = new THREE.TrackballControls( camera );
+
+      controls.rotateSpeed = 1.5;
+      controls.zoomSpeed = 1.5;
+      controls.panSpeed = 1.5;
+
+      controls.noZoom = false;
+      controls.noPan = false;
+
+      controls.staticMoving = true;
+      controls.dynamicDampingFactor = 0.3;
+
+      controls.keys = [ 65, 83, 68 ];
+
+      controls.addEventListener( 'change', render );
+
+      //setup light
+      directionalLight.position.set(100, 100, 50);
+      directionalLight2.position.set(-100, 100, 50);
+      scene.add(directionalLight); 
+      scene.add(directionalLight2); 
+      scene.add(ambLight);
+      drawfloor(scene);
+      drawCoords(scene);   
+
+      render();
+    }
+
+    function resizeThree(){
+      width = $("#canvas3d").width();
+      height = $("#canvas3d").height();
+      
+      camera.left   = width  / - 2;
+      camera.right  = width  / 2;
+      camera.top    = height / 2;
+      camera.bottom = height / - 2;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);     
+
+      render();
+    }
+
+    function scale(e){
+      //console.log(e.originalEvent.wheelDelta);
+      
+      camera.zoom += -(e.originalEvent.wheelDelta/500);
+      
+      if(camera.zoom < 1 )
+        camera.zoom = 1;
+      
+      camera.updateProjectionMatrix();
+      render();
+      
+      console.log(camera.zoom);
+    }
+
+
+    function drawCoords(scene) {
+      var lineL = 10
+      var xmat = new THREE.LineBasicMaterial({color: 0xff0000 , opacity: 1, linewidth: 10});
+      var ymat = new THREE.LineBasicMaterial({color: 0x00ff00 , opacity: 1, linewidth: 10});
+      var zmat = new THREE.LineBasicMaterial({color: 0x0000ff , opacity: 1, linewidth: 10});
+
+      var xgeo = new THREE.Geometry();
+      xgeo.vertices.push(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(lineL, 0, 0)
+      );
+      var ygeo = new THREE.Geometry();
+      ygeo.vertices.push(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(0, lineL, 0)
+      );
+      var zgeo = new THREE.Geometry();
+      zgeo.vertices.push(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(0, 0, lineL)
+      );
+
+     
+      var xline = new THREE.Line(xgeo, xmat);
+      var yline = new THREE.Line(ygeo, ymat);
+      var zline = new THREE.Line(zgeo, zmat);
+
+      scene.add(xline);
+      scene.add(yline);
+      scene.add(zline);
+    }
+
+    function drawfloor(scene) {
+      
+      var Box_M = new THREE.LineBasicMaterial({color: 0xb3b3b3, transparent: true, opacity: 0.7});
+      var squareMaterial = new THREE.MeshBasicMaterial({color:0xFFFFFF,side:THREE.DoubleSide, transparent: true, opacity: 0.5}); 
+
+      var fgeo= new THREE.Geometry();
+      fgeo.vertices.push(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(Box.x, 0, 0),
+          new THREE.Vector3(Box.x, Box.y, 0),
+          new THREE.Vector3(0, Box.y, 0),
+          new THREE.Vector3(0, 0, 0)
+      );
+      var fline = new THREE.Line(fgeo,Box_M);
+      scene.add(fline);
+      fgeo.faces.push(new THREE.Face3(0, 1, 2))
+      fgeo.faces.push(new THREE.Face3(2, 3, 4))     
+      var squareMesh = new THREE.Mesh(fgeo, squareMaterial); 
+      scene.add(squareMesh);   
+
+      var gGeo
+
+    }
+
+    function render() {
+      renderer.render(scene, camera);
+    };   
+
+    function animate() {
+      requestAnimationFrame( animate );
+      controls.update();
+    }  
+
+    function loadSTL(path) {
+      loader.load( path, function ( G ) {
+      STLmesh = new THREE.Mesh( G, STLmaterial );
+        scene.add( STLmesh );   
+        render();  
+      });
+    }
+
+    function chooseFile(name) {
+      var chooser = document.querySelector(name);
+      chooser.addEventListener("change", function(evt) {
+        loadSTL(this.value);
+      }, false); 
+    }
+    
+
+  </script>
+</body>
+</html>

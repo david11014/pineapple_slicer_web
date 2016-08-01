@@ -1,0 +1,18 @@
+{
+  "main": "index.html",
+  "name": "pineapple_slicer_web",
+  "description": "",
+  "version": "0.1.0",
+  "keywords": [ "slicer", "node-webkit" ],
+  "window": {
+    "title": "Pineapple slicer",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 600,
+    "position": "center"
+  },
+  "webkit": {
+  "plugin": true
+  }
+}
