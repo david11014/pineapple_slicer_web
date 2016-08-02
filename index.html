@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>Pineapple slicer</title>
   <link rel="stylesheet" href="css/uikit.css" />
+  <link rel="stylesheet" href="css/font-awesome.css" />
   <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="./js/uikit.js"></script>
     
@@ -16,8 +17,23 @@
       height: 3em;
     }
     #control_block{
-      min-width: 300px;
+      min-width: 200px;
       height: 100%;
+    }
+    .uk-navbar-nav .uk-navbar-nav-subtitle {
+      line-height: 40px;
+    }
+    .uk-navbar-nav > li > a {
+      height: 60px;
+      font-size: 30px;
+      padding: 0 10px;
+    }
+    .uk-navbar-nav-subtitle > div {
+      margin:0 auto;
+      text-align:center;
+    }
+    .fa::before {
+      padding: 0 10px;
     }
 
   </style>
@@ -26,19 +42,66 @@
 </head>
 
 <body>
-  
-  <div class="uk-grid">
-    <div id="nav" class="uk-width-1-1">
-      <h1>navbar</h1>
-      <input id="fileDialog" style="display:none" type="file" accept=".stl" />  
-    </div>
-    <div id="canvas3d" class="uk-width-3-4"></div>
 
+  <nav class="uk-navbar">
+    <ul class="uk-navbar-nav">
+        <li>
+          <a onclick="$('#fileDialog').trigger('click');"class="uk-navbar-nav-subtitle fa fa-folder-open">          
+            <div>開啟檔案</div>
+          </a>
+        </li>
+        <li>
+          <a onclick="" class="uk-navbar-nav-subtitle fa fa-link">
+            <div>連結</div>
+          </a>
+        </li>
+        <li>
+          <a onclick="" class="uk-navbar-nav-subtitle fa fa-database">
+            <div>切層</div>
+          </a>
+        </li>
+
+    </ul>
+    <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+          <li>
+            <a onclick="" class="uk-navbar-nav-subtitle fa fa-cogs">
+              <div>設定</div>
+            </a>
+          </li><!--
+          <li>
+            <a href=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-ban">
+              <div>STOP</div>
+            </a>
+          </li>
+          <li>
+            <a href=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-minus-circle">
+              <div>STOP</div>
+            </a>
+          </li>-->
+          <li>
+            <a onclick=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle">
+              <div>緊急停止</div>
+            </a>
+          </li>  
+          
+        </ul>
+    </div>
+  </nav>
+
+  <div class="uk-grid">
+    <div id="canvas3d" class="uk-width-3-4"></div>
     <div id="control_block" class="uk-width-1-4">
       <h1>控制區域</h1>
+      <a>中文 english</a>
     </div>  
   </div>
   
+
+  <!--hide item-->
+  <div id="hide" style="display:none">
+    <input id="fileDialog" type="file" accept=".stl" />
+  </div>
    
 
   <script type="text/javascript" src="./js/three.js"></script> 
@@ -254,8 +317,6 @@
         loadSTL(this.value);
       }, false); 
     }
-    
-
   </script>
 </body>
 </html>
