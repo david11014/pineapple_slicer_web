@@ -81,11 +81,12 @@ THREE.TrackballControls = function ( object, domElement ) {
 	this.handleResize = function () {
 
 		if ( this.domElement === document ) {
-
+			
 			this.screen.left = 0;
 			this.screen.top = 0;
 			this.screen.width = window.innerWidth;
 			this.screen.height = window.innerHeight;
+			console.log("document resize");
 
 		} else {
 

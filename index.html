@@ -38,8 +38,54 @@
 
   </style>
   <script>
+    var portName = "COM14"
     var serialPort = require("serialport");
-    
+    var port = new serialPort(portName, {
+      baudRate: 250000
+    });
+    port.on('open', function() {
+      console.log('port open');
+    });
+    port.on('close', function() {
+      console.log('port close');
+    });
+   
+    // open errors will be emitted as an error event 
+    port.on('error', function(err) {
+      console.log('Error: ', err.message);
+    })
+    port.on('data', function (data) {
+      console.log('Data: ' + data);
+    });
+    function openPort()
+    {
+      if(!port.isOpen())
+      {
+        $('#open-port').hide();
+        $('#close-port').show();
+        port.open();
+      }        
+      else
+        console.log("port was opened");
+    }
+    function closePort()
+    {
+      if(port.isOpen())
+      {
+        $('#open-port').show();
+        $('#close-port').hide();
+        port.close();
+      }        
+      else
+        console.log("port was closed");
+    }
+    function sendCommand()
+    {
+      port.write( command.value + '\n');
+      console.log("CMD: " + command.value);
+    }
+
+
   </script>  
 </head>
 
@@ -53,8 +99,13 @@
           </a>
         </li>
         <li>
-          <a onclick="" class="uk-navbar-nav-subtitle fa fa-link">
+          <a onclick="openPort();" style="display:none;" id ="open-port" class="uk-navbar-nav-subtitle fa fa-link">
             <div>連結</div>
+          </a>
+        </li>
+        <li>
+          <a onclick="closePort();" id ="close-port" class="uk-navbar-nav-subtitle fa fa-chain-broken">
+            <div>斷開</div>
           </a>
         </li>
         <li>
@@ -70,19 +121,9 @@
             <a onclick="" class="uk-navbar-nav-subtitle fa fa-cogs">
               <div>設定</div>
             </a>
-          </li><!--
+          </li>          
           <li>
-            <a href=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-ban">
-              <div>STOP</div>
-            </a>
-          </li>
-          <li>
-            <a href=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-minus-circle">
-              <div>STOP</div>
-            </a>
-          </li>-->
-          <li>
-            <a onclick=""  class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle">
+            <a onclick="" id="command"  class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle">
               <div>緊急停止</div>
             </a>
           </li>  
@@ -93,9 +134,18 @@
 
   <div class="uk-grid">
     <div id="canvas3d" class="uk-width-3-4"></div>
-    <div id="control_block" class="uk-width-1-4">
-      <h1>控制區域</h1>
-      <a>中文 english</a>
+    <div id="control_block" class="uk-width-1-4 uk-grid">
+      <div class="uk-panel uk-width-medium-1-1">
+        <h3>command line</h3>
+        
+          <input type="text"  name="command" placeholder="command"></input>  
+          <button class="uk-button" >send</button>
+        
+
+      </div>
+      <div class="uk-panel uk-width-medium-1-1">
+
+      </div>
     </div>  
   </div>
   
@@ -166,6 +216,7 @@
 
       $("#canvas3d").bind('mousewheel', scale);
       $(window).resize(resizeThree);
+      $(window).bind('beforeunload',closePort);
       
     }
     
@@ -183,7 +234,7 @@
       camera.zoom = 2;
       
       //TrackballControl
-      controls = new THREE.TrackballControls( camera );
+      controls = new THREE.TrackballControls( camera , document.getElementById("canvas3d"));
 
       controls.rotateSpeed = 1.5;
       controls.zoomSpeed = 1.5;
