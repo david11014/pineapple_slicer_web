@@ -23,3 +23,8 @@
 .fa::before {
   padding: 0 10px;
 }
+
+#infobox {
+  padding: 2px 2px 2px 5px;
+  margin: 0 auto;
+}

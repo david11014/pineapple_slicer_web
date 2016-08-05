@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/font-awesome.css" />
   <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="./js/uikit.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
   <script type="text/javascript" src="./js/serialport.js"></script>
   <link rel="stylesheet" href="css/main.css" />
     
@@ -58,12 +59,13 @@
   <div class="uk-grid">
     <div id="canvas3d" class="uk-width-3-4"></div>
     <div id="control_block" class="uk-width-1-4 uk-grid">
-      <div class="uk-panel uk-width-medium-1-1">
-        <h3>command line</h3>        
-        <form id="send-command" onsubmit="return false">
+      <div class="uk-panel uk-width-medium-1-1 uk-grid">
+        <h3 class="uk-width-medium-1-1">command line</h3>        
+        <form class="uk-form-file uk-width-medium-1-1" id="send-command" onsubmit="return false">
           <input  id="command-input" type="text" placeholder="command"></input> 
           <button  type="submit"  class="uk-button">傳送</button>
         </form>
+        <textarea readonly class="uk-width-medium-1-1" id="infobox"rows="7"></textarea>
 
       </div>
       <div class="uk-panel uk-width-medium-1-1">
@@ -137,11 +139,11 @@
       File_menu.items[1].click = function() {  
         nw.Window.get().close();
       };
-
+      /**setup event**/
       $("#canvas3d").bind('mousewheel', scale);
       $('#send-command').submit(function (e) {
         e.preventDefault();
-        sendCommand(document.getElementById("command-input").value);
+        sendCommand($("#command-input").val());
         return false;
       });
       $(window).resize(resizeThree);
@@ -206,7 +208,7 @@
     }
 
     function scale(e){
-      //console.log(e.originalEvent.wheelDelta);
+      //log(e.originalEvent.wheelDelta);
       
       camera.zoom += -(e.originalEvent.wheelDelta/500);
       
@@ -216,9 +218,8 @@
       camera.updateProjectionMatrix();
       render();
       
-      //console.log(camera.zoom);
+      //log(camera.zoom);
     }
-
 
     function drawCoords(scene) {
       var lineL = 10

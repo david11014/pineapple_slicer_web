@@ -4,18 +4,18 @@ var port = new serialPort(portName, {
   baudRate: 250000
 });
 port.on('open', function() {
-  console.log('port open');
+  log('port open');
 });
 port.on('close', function() {
-  console.log('port close');
+  log('port close');
 });
 
 // open errors will be emitted as an error event 
 port.on('error', function(err) {
-  console.log('Error: ', err.message);
+  log('Error: ', err.message);
 })
 port.on('data', function (data) {
-  console.log('Data: ' + data);
+  log('echo: ' + data);
 });
 function openPort()
 {
@@ -26,7 +26,7 @@ function openPort()
     port.open();
   }        
   else
-    console.log("port was opened");
+    log("port was opened");
 }
 function closePort()
 {
@@ -37,12 +37,12 @@ function closePort()
     port.close();
   }        
   else
-    console.log("port was closed");
+    log("port was closed");
 }
 function sendCommand(command)
 {
   port.write( command + '\n');
-  console.log("CMD: " + command);
+  log("CMD: " + command);
 }
 function emergencyStop()
 {
