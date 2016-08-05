@@ -1,0 +1,25 @@
+#canvas3d{
+  height: 600px;
+}
+#nav{
+  height: 3em;
+}
+#control_block{
+  min-width: 200px;
+  height: 100%;
+}
+.uk-navbar-nav .uk-navbar-nav-subtitle {
+  line-height: 40px;
+}
+.uk-navbar-nav > li > a {
+  height: 60px;
+  font-size: 30px;
+  padding: 0 10px;
+}
+.uk-navbar-nav-subtitle > div {
+  margin:0 auto;
+  text-align:center;
+}
+.fa::before {
+  padding: 0 10px;
+}

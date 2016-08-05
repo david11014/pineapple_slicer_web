@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"op",
+				"open"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
 				"min-",
 				"min-width"
 			],
@@ -42,10 +50,6 @@
 			[
 				"Fil",
 				"File_menu"
-			],
-			[
-				"op",
-				"openfile"
 			],
 			[
 				"im",
@@ -131,8 +135,32 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 7034,
+				"buffer_size": 8573,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/main.css",
+			"settings":
+			{
+				"buffer_size": 359,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/serialport.js",
+			"settings":
+			{
+				"buffer_size": 1083,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/TrackballControls.js",
+			"settings":
+			{
+				"buffer_size": 14083,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -171,7 +199,7 @@
 				"View: Toggle Open Files in Side Bar"
 			]
 		],
-		"width": 512.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -188,6 +216,14 @@
 	},
 	"file_history":
 	[
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/run_debug.bat",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/css/uikit.css",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/css/font-awesome.css",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/package.bat",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/release_debug.bat",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/release.bat",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/package.json",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/pineapple_slicer_web.sublime-project",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/index.html",
 		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/config.rb",
 		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/package.bat",
@@ -260,6 +296,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			" ></",
+			"\"Microsoft JhengHei \"",
+			"Microsoft JhengHei \"",
+			"Microsoft JhengHei",
+			"nav",
+			"fonta",
+			"font-face",
+			"font",
+			"font-face",
+			"font-family",
+			"font",
 			"multiplyScala",
 			"multiplyScalar",
 			"_eye",
@@ -286,6 +333,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\"Microsoft JhengHei\"",
 			"graph",
 			"renderer"
 		],
@@ -298,6 +346,7 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -305,33 +354,111 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 7034,
+						"buffer_size": 8573,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								363,
-								363
+								4295,
+								4295
 							]
 						],
 						"settings":
 						{
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"rulers":
-							[
-								70
-							],
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"wrap_width": 70
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2664.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/main.css",
+					"settings":
+					{
+						"buffer_size": 359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								45
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/serialport.js",
+					"settings":
+					{
+						"buffer_size": 1083,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1083,
+								1083
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 618.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/TrackballControls.js",
+					"settings":
+					{
+						"buffer_size": 14083,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								894,
+								894
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

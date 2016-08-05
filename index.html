@@ -7,86 +7,9 @@
   <link rel="stylesheet" href="css/font-awesome.css" />
   <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="./js/uikit.js"></script>
+  <script type="text/javascript" src="./js/serialport.js"></script>
+  <link rel="stylesheet" href="css/main.css" />
     
-  <style>
-
-    #canvas3d{
-      height: 600px;
-    }
-    #nav{
-      height: 3em;
-    }
-    #control_block{
-      min-width: 200px;
-      height: 100%;
-    }
-    .uk-navbar-nav .uk-navbar-nav-subtitle {
-      line-height: 40px;
-    }
-    .uk-navbar-nav > li > a {
-      height: 60px;
-      font-size: 30px;
-      padding: 0 10px;
-    }
-    .uk-navbar-nav-subtitle > div {
-      margin:0 auto;
-      text-align:center;
-    }
-    .fa::before {
-      padding: 0 10px;
-    }
-
-  </style>
-  <script>
-    var portName = "COM14"
-    var serialPort = require("serialport");
-    var port = new serialPort(portName, {
-      baudRate: 250000
-    });
-    port.on('open', function() {
-      console.log('port open');
-    });
-    port.on('close', function() {
-      console.log('port close');
-    });
-   
-    // open errors will be emitted as an error event 
-    port.on('error', function(err) {
-      console.log('Error: ', err.message);
-    })
-    port.on('data', function (data) {
-      console.log('Data: ' + data);
-    });
-    function openPort()
-    {
-      if(!port.isOpen())
-      {
-        $('#open-port').hide();
-        $('#close-port').show();
-        port.open();
-      }        
-      else
-        console.log("port was opened");
-    }
-    function closePort()
-    {
-      if(port.isOpen())
-      {
-        $('#open-port').show();
-        $('#close-port').hide();
-        port.close();
-      }        
-      else
-        console.log("port was closed");
-    }
-    function sendCommand()
-    {
-      port.write( command.value + '\n');
-      console.log("CMD: " + command.value);
-    }
-
-
-  </script>  
 </head>
 
 <body>
@@ -123,7 +46,7 @@
             </a>
           </li>          
           <li>
-            <a onclick="" id="command"  class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle">
+            <a onclick="emergencyStop()" class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle" >
               <div>緊急停止</div>
             </a>
           </li>  
@@ -136,11 +59,11 @@
     <div id="canvas3d" class="uk-width-3-4"></div>
     <div id="control_block" class="uk-width-1-4 uk-grid">
       <div class="uk-panel uk-width-medium-1-1">
-        <h3>command line</h3>
-        
-          <input type="text"  name="command" placeholder="command"></input>  
-          <button class="uk-button" >send</button>
-        
+        <h3>command line</h3>        
+        <form id="send-command" onsubmit="return false">
+          <input  id="command-input" type="text" placeholder="command"></input> 
+          <button  type="submit"  class="uk-button">傳送</button>
+        </form>
 
       </div>
       <div class="uk-panel uk-width-medium-1-1">
@@ -179,8 +102,9 @@
     var ambLight = new THREE.AmbientLight(0xf0f0f0);
 
     var loader = new THREE.STLLoader();
-    var STLmaterial = new THREE.MeshPhongMaterial( { color: 0xff8533, specular: 0xe65c00, shininess: 200 } );
+    var STLmaterial = new THREE.MeshPhongMaterial( { color: 0xff8533, specular: 0xe65c00, shininess: 100 } );
     var STLmesh = new THREE.CubeGeometry(10,10, 10);
+    var STLgeo  = new THREE.Geometry();
 
     var menu = new nw.Menu({ type: 'menubar' });
 
@@ -215,6 +139,11 @@
       };
 
       $("#canvas3d").bind('mousewheel', scale);
+      $('#send-command').submit(function (e) {
+        e.preventDefault();
+        sendCommand(document.getElementById("command-input").value);
+        return false;
+      });
       $(window).resize(resizeThree);
       $(window).bind('beforeunload',closePort);
       
@@ -287,7 +216,7 @@
       camera.updateProjectionMatrix();
       render();
       
-      console.log(camera.zoom);
+      //console.log(camera.zoom);
     }
 
 
@@ -357,11 +286,20 @@
     }  
 
     function loadSTL(path) {
-      loader.load( path, function ( G ) {
-      STLmesh = new THREE.Mesh( G, STLmaterial );
+      loader.load( path, function ( G ) {        
+        STLgeo = G;    
+        STLgeo.computeBoundingBox();
+
+        var cX,cY;
+        cX = (STLgeo.boundingBox.max.x + STLgeo.boundingBox.min.x)/2;
+        cY = (STLgeo.boundingBox.max.y + STLgeo.boundingBox.min.y)/2;
+
+        STLgeo.translate((Box.x/2)-cX,(Box.y/2)-cY,-STLgeo.boundingBox.min.z);
+        STLgeo.computeFaceNormals();
+        STLmesh = new THREE.Mesh( STLgeo, STLmaterial );
         scene.add( STLmesh );   
-        render();  
-      });
+        render();      
+      });   
     }
 
     function chooseFile(name) {
