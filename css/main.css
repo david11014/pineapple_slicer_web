@@ -1,9 +1,6 @@
 #canvas3d{
   height: 520px;
 }
-#nav{
-  height: 3em;
-}
 #control-block{
   min-width: 200px;
   height: 100%;
@@ -36,4 +33,5 @@
 #tab {
   position: fixed;
   width: 80px;
+  height: 100%;
 }

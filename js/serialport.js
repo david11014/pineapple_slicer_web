@@ -11,7 +11,7 @@ function refleshPort() {
       portList.push(port.comName);
       $('#port-list').append("<li><a onclick='settingPort(\"" + port.comName  + "\",250000);'>" + port.comName  + "</a></li>");
     });
-    
+
     if(portList.length == 0) {
       $('#port-list').append('<li id="no-mech" onclick="refleshPort()"><a >無可用機器請點擊刷新</a></li>');
       //log("NO port"); 
@@ -60,10 +60,10 @@ function settingPort(portName , baud) {
     log('Error: ' + err.message);
   });
   port.on('open', function () {
-    log('port open');
+    log('Open port: ' + port.path);
   });
   port.on('close', function () {
-    log('port close');
+    log('Close port ');
   });
 
   port.on('data', function (data) {
