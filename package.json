@@ -8,7 +8,7 @@
     "title": "Pineapple slicer",
     "toolbar": true,
     "frame": true,
-    "min_width":800,
+    "min_width":1000,
     "width": 800,
     "height": 600,
     "position": "center"

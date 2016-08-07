@@ -1,10 +1,10 @@
 #canvas3d{
-  height: 600px;
+  height: 520px;
 }
 #nav{
   height: 3em;
 }
-#control_block{
+#control-block{
   min-width: 200px;
   height: 100%;
 }
@@ -27,4 +27,13 @@
 #infobox {
   padding: 2px 2px 2px 5px;
   margin: 0 auto;
+}
+
+#send-command > div > *{
+  margin-bottom: 5px;
+}
+
+#tab {
+  position: fixed;
+  width: 80px;
 }

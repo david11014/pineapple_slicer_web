@@ -5,12 +5,11 @@
   <title>Pineapple slicer</title>
   <link rel="stylesheet" href="css/uikit.css" />
   <link rel="stylesheet" href="css/font-awesome.css" />
+  <link rel="stylesheet" href="css/main.css" /> 
   <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="./js/uikit.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
-  <script type="text/javascript" src="./js/serialport.js"></script>
-  <link rel="stylesheet" href="css/main.css" />
-    
+     
 </head>
 
 <body>
@@ -22,13 +21,16 @@
             <div>開啟檔案</div>
           </a>
         </li>
-        <li>
-          <a onclick="openPort();" style="display:none;" id ="open-port" class="uk-navbar-nav-subtitle fa fa-link">
-            <div>連結</div>
-          </a>
+
+        <li id ="open-port" class="uk-parent" data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false">
+            <a class = "uk-navbar-nav-subtitle fa fa-link"><div>連結</div></a>
+            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0px;" >
+                <ul id="port-list" class="uk-nav uk-nav-navbar"></ul>
+            </div>
         </li>
+
         <li>
-          <a onclick="closePort();" id ="close-port" class="uk-navbar-nav-subtitle fa fa-chain-broken">
+          <a onclick="closePort();" style="display:none;" id ="close-port" class="uk-navbar-nav-subtitle fa fa-chain-broken">
             <div>斷開</div>
           </a>
         </li>
@@ -50,27 +52,34 @@
             <a onclick="emergencyStop()" class="uk-text-danger uk-navbar-nav-subtitle fa fa-times-circle" >
               <div>緊急停止</div>
             </a>
-          </li>  
-          
+          </li>            
         </ul>
     </div>
   </nav>
-
+  <ul id="tab" class="uk-tab uk-tab-left">
+    <li class="uk-active"><a>位置控制</a></li>
+    <li><a>切層設定</a></li>
+  </ul>
   <div class="uk-grid">
-    <div id="canvas3d" class="uk-width-3-4"></div>
-    <div id="control_block" class="uk-width-1-4 uk-grid">
-      <div class="uk-panel uk-width-medium-1-1 uk-grid">
-        <h3 class="uk-width-medium-1-1">command line</h3>        
-        <form class="uk-form-file uk-width-medium-1-1" id="send-command" onsubmit="return false">
-          <input  id="command-input" type="text" placeholder="command"></input> 
-          <button  type="submit"  class="uk-button">傳送</button>
-        </form>
+    <div id="canvas3d" class="uk-width-3-4"></div>   
+    <div id="control-block" class="uk-width-1-4 uk-panel">      
+
+      <div id="command-block" class="uk-grid" style="padding:10px;">
+
+          <form class="uk-form uk-width-medium-1-1" id="send-command" onsubmit="return false"><div class="uk-grid">
+
+            <input  id="command-input" type="text" placeholder="command" class="uk-width-1-1"></input> 
+            <button  type="submit"  class="uk-button uk-width-1-1">傳送</button>
+
+          </div></form>
+
         <textarea readonly class="uk-width-medium-1-1" id="infobox"rows="7"></textarea>
+      </div>
+
+      <div id="slice-block" class="uk-grid" style="padding:10px;">
 
       </div>
-      <div class="uk-panel uk-width-medium-1-1">
 
-      </div>
     </div>  
   </div>
   
@@ -80,7 +89,7 @@
     <input id="fileDialog" type="file" accept=".stl" />
   </div>
    
-
+  <script type="text/javascript" src="./js/serialport.js"></script>
   <script type="text/javascript" src="./js/three.js"></script> 
   <script type="text/javascript" src="./js/STLLoader.js"></script>
   <script type="text/javascript" src="./js/TrackballControls.js"></script>
@@ -90,8 +99,7 @@
     var height = $("#canvas3d").height();
     var near = -1000;
     var far = 1000;
-    var Box = new THREE.Vector3(150,150,100);
-   
+    var Box = new THREE.Vector3(150,150,100);   
 
     // Fallback to canvas renderer, if necessary.
     var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -107,12 +115,9 @@
     var STLmaterial = new THREE.MeshPhongMaterial( { color: 0xff8533, specular: 0xe65c00, shininess: 100 } );
     var STLmesh = new THREE.CubeGeometry(10,10, 10);
     var STLgeo  = new THREE.Geometry();
-
     var menu = new nw.Menu({ type: 'menubar' });
-
     var File_menu = new nw.Menu();
-    
-    
+        
     windows_init();
     threeInit();
     animate();
@@ -121,6 +126,7 @@
 
     function windows_init(){
       chooseFile('#fileDialog');
+      refleshPort();
 
       /**setup menu**/
       menu.append(new nw.MenuItem({
@@ -146,8 +152,15 @@
         sendCommand($("#command-input").val());
         return false;
       });
-      $(window).resize(resizeThree);
+      $(window).resize(function (e) {
+        resizeThree();
+        $('#tab').css({"left":(width-$('#tab').width()).toString() + "px"});
+      });
+      
       $(window).bind('beforeunload',closePort);
+
+      $('#tab').css({"left":(width-$('#tab').width()).toString() + "px"});
+      $('#open-port').on('show.uk.dropdown', function(){refleshPort();});
       
     }
     
@@ -204,7 +217,7 @@
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);     
 
-      render();
+      render();      
     }
 
     function scale(e){

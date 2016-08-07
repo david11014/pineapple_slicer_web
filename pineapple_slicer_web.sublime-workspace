@@ -4,8 +4,40 @@
 		"selected_items":
 		[
 			[
+				"margin",
+				"margin-bottom"
+			],
+			[
 				"op",
-				"open"
+				"openPort"
+			],
+			[
+				"cl",
+				"closePort"
+			],
+			[
+				"clo",
+				"close-port"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"sen",
+				"send-command"
+			],
+			[
+				"STL",
+				"STLgeo"
+			],
+			[
+				"B",
+				"Box"
+			],
+			[
+				"bo",
+				"Box"
 			],
 			[
 				"co",
@@ -26,10 +58,6 @@
 			[
 				"con",
 				"control_block"
-			],
-			[
-				"B",
-				"Box_M"
 			],
 			[
 				"Bo",
@@ -68,10 +96,6 @@
 				"opacity	opacity()"
 			],
 			[
-				"bo",
-				"bottom"
-			],
-			[
 				"a",
 				"absolute"
 			],
@@ -98,10 +122,6 @@
 			[
 				"font",
 				"font-size"
-			],
-			[
-				"margin",
-				"margin-top"
 			],
 			[
 				"he",
@@ -135,7 +155,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 8573,
+				"buffer_size": 9758,
 				"line_ending": "Windows"
 			}
 		},
@@ -143,7 +163,7 @@
 			"file": "css/main.css",
 			"settings":
 			{
-				"buffer_size": 359,
+				"buffer_size": 513,
 				"line_ending": "Windows"
 			}
 		},
@@ -151,16 +171,16 @@
 			"file": "js/serialport.js",
 			"settings":
 			{
-				"buffer_size": 1083,
+				"buffer_size": 924,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/TrackballControls.js",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 14083,
-				"line_ending": "Unix"
+				"buffer_size": 358,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -216,6 +236,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/main.js",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/TrackballControls.js",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/run_debug.bat",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/css/uikit.css",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/css/font-awesome.css",
@@ -296,6 +318,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"console.log",
+			"=\"#\">",
 			" ></",
 			"\"Microsoft JhengHei \"",
 			"Microsoft JhengHei \"",
@@ -333,6 +357,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"log",
 			"\"Microsoft JhengHei\"",
 			"graph",
 			"renderer"
@@ -354,26 +379,28 @@
 					"file": "index.html",
 					"settings":
 					{
-						"buffer_size": 8573,
+						"buffer_size": 9758,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4295,
-								4295
+								1933,
+								1933
 							]
 						],
 						"settings":
 						{
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2664.0,
+						"translation.y": 1050.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -383,25 +410,27 @@
 					"file": "css/main.css",
 					"settings":
 					{
-						"buffer_size": 359,
+						"buffer_size": 513,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								45,
-								45
+								469,
+								469
 							]
 						],
 						"settings":
 						{
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
 							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -411,54 +440,56 @@
 					"file": "js/serialport.js",
 					"settings":
 					{
-						"buffer_size": 1083,
+						"buffer_size": 924,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1083,
-								1083
+								160,
+								160
 							]
 						],
 						"settings":
 						{
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 618.0,
+						"translation.y": 288.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "js/TrackballControls.js",
+					"file": "package.json",
 					"settings":
 					{
-						"buffer_size": 14083,
+						"buffer_size": 358,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								894,
-								894
+								1,
+								1
 							]
 						],
 						"settings":
 						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
 							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 864.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
