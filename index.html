@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="css/main.css" /> 
   <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="./js/uikit.js"></script>
-  <script type="text/javascript" src="./js/main.js"></script>
-     
+  <script type="text/javascript" src="./js/serialport.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>     
 </head>
 
 <body>
@@ -56,27 +56,33 @@
     </div>
   </nav>
   <ul id="tab" class="uk-tab uk-tab-left">
-    <li class="uk-active"><a>位置控制</a></li>
-    <li><a>切層設定</a></li>
+    <li id="command-block-tab" class="uk-active"><a onclick="switchTab('#command-block')">位置控制</a></li>
+    <li id="slice-block-tab" ><a onclick="switchTab('#slice-block')">切層設定</a></li>
   </ul>
   <div class="uk-grid">
     <div id="canvas3d" class="uk-width-3-4"></div>   
     <div id="control-block" class="uk-width-1-4 uk-panel">      
 
       <div id="command-block" class="uk-grid" style="padding:10px;">
-
-          <form class="uk-form uk-width-medium-1-1" id="send-command" onsubmit="return false"><div class="uk-grid">
-
+        <form class="uk-form uk-width-medium-1-1" id="send-command" onsubmit="return false">
+          <div class="uk-grid">
             <input  id="command-input" type="text" placeholder="command" class="uk-width-1-1"></input> 
             <button  type="submit"  class="uk-button uk-width-1-1">傳送</button>
-
-          </div></form>
-
+          </div>
+        </form>
         <textarea readonly class="uk-width-medium-1-1" id="infobox"rows="7"></textarea>
+        <div class="uk-button-group" style="transform-origin:left bottom; transform:rotate(90deg);">   
+          <button class="uk-button fa fa-home" onclick="sendCommand('G28')" style="padding:0;"></button>
+          <button class="uk-button" onclick="sendCommand('G91 G00 Z10\nG90')">&#60</button>
+          <button class="uk-button" onclick="sendCommand('G91 G00 Z0.1\nG90')">&#171</button>        
+          <button class="uk-button" onclick="sendCommand('G91 G00 Z-0.1\nG90')">&#187</button>
+          <button class="uk-button" onclick="sendCommand('G91 G00 Z-10\nG90')">&#62</button>
+        </div>
+
       </div>
 
-      <div id="slice-block" class="uk-grid" style="padding:10px;">
-
+      <div id="slice-block" class="uk-grid" style="display:none; padding:10px;">
+        slick block
       </div>
 
     </div>  
@@ -87,16 +93,16 @@
     <input id="fileDialog" type="file" accept=".stl" />
   </div>
    
-  <script type="text/javascript" src="./js/serialport.js"></script>
   <script type="text/javascript" src="./js/three.js"></script> 
   <script type="text/javascript" src="./js/STLLoader.js"></script>
   <script type="text/javascript" src="./js/TrackballControls.js"></script>
+  <script type="text/javascript" src="./js/ThreeCSG.js"></script>
   <script>
     
     var width = $("#canvas3d").width();
     var height = $("#canvas3d").height();
-    var near = -1000;
-    var far = 1000;
+    var near = -5000;
+    var far = 5000;
     var Box = new THREE.Vector3(150,150,100);   
 
     // Fallback to canvas renderer, if necessary.
@@ -111,58 +117,58 @@
 
     var loader = new THREE.STLLoader();
     var STLmaterial = new THREE.MeshPhongMaterial( { color: 0xff8533, specular: 0xe65c00, shininess: 100 } );
-    var STLmesh = new THREE.CubeGeometry(10,10, 10);
-    var STLgeo  = new THREE.Geometry();
+    
     var menu = new nw.Menu({ type: 'menubar' });
     var File_menu = new nw.Menu();
+
+    var Models = {
+      num  : 0,      
+      meshName : [],
+      bsp  : [],
+      add  : function(M) {
+
+        this.meshName[this.num] = "model" + this.num;
+        M.name = this.meshName[this.num] ; 
+        scene.add(M);
+        this.bsp[this.num]  = new ThreeBSP(M);
+        this.num++;
+        render();
+      },
+      remove : function(index) {
+        if(index < this.num )
+        {
+          scene.remove(scene.getObjectByName(this.meshName[index]));
+          for(; index < this.num-1 ;index++)
+          {
+            this.meshName[index] = this.meshName[index+1];
+            this.bsp[index]  = this.bsp[index+1];
+          }
+          this.meshName.pop();
+          this.bsp.pop();
+          this.num--;
+
+          render();
+        }
+        else
+          console.log('No this thing');
+      },
+      show : function() {
+        this.mesh.forEach(function(item,index){
+          scene.add(item);
+        });
+
+      }         
+      
+    }
+    
+    //var STLmod = new Models();
         
     windows_init();
     threeInit();
     animate();
     render(); 
     $("#canvas3d").append(renderer.domElement);
-
-    function windows_init(){
-      chooseFile('#fileDialog');
-      refleshPort();
-
-      /**setup menu**/
-      menu.append(new nw.MenuItem({
-        label: 'File',
-        submenu: File_menu
-      }));
-      nw.Window.get().menu = menu;
-
-      //open file
-      File_menu.append(new nw.MenuItem({ label: 'Open File' }));      
-      File_menu.items[0].click = function() {  
-        $('#fileDialog').trigger('click');
-      };
-      //exit
-      File_menu.append(new nw.MenuItem({ label: 'Exit' }));
-      File_menu.items[1].click = function() {  
-        nw.Window.get().close();
-      };
-      /**setup event**/
-      $("#canvas3d").bind('mousewheel', scale);
-      $('#send-command').submit(function (e) {
-        e.preventDefault();
-        sendCommand($("#command-input").val());
-        return false;
-      });
-      $(window).resize(function (e) {
-        $('#canvas3d').height(window.innerHeight - $("#nav").height() - 5 );
-        resizeThree();
-        $('#tab').css({"left":(width-$('#tab').width()).toString() + "px"});
-      });
-      
-      $(window).bind('beforeunload',closePort);
-      $('#tab').css({"left":(width-$('#tab').width()).toString() + "px"});
-      $('#open-port').on('show.uk.dropdown', function(){refleshPort();});
-      $('#canvas3d').height(window.innerHeight - $("#nav").height() - 5);
-      
-    }
-    
+  
     function threeInit(){
       // Set the size of the WebGL viewport.
       renderer.setSize(width, height); 
@@ -283,35 +289,46 @@
       fgeo.faces.push(new THREE.Face3(0, 1, 2))
       fgeo.faces.push(new THREE.Face3(2, 3, 4))     
       var squareMesh = new THREE.Mesh(fgeo, squareMaterial); 
-      scene.add(squareMesh);   
+      scene.add(squareMesh); 
 
       var gGeo
+    }
 
+    function removeObj(obj) {
+      scene.remove(obj);
     }
 
     function render() {
-      renderer.render(scene, camera);
+      renderer.render(scene, camera);      
     };   
 
     function animate() {
       requestAnimationFrame( animate );
+
       controls.update();
     }  
-
     function loadSTL(path) {
+      
+      var STLgeo  = new THREE.Geometry();
+      
       loader.load( path, function ( G ) {        
-        STLgeo = G;    
+        if(G instanceof THREE.BufferGeometry)
+          STLgeo = new THREE.Geometry().fromBufferGeometry(G);
+        else          
+          STLgeo = G;
+        
         STLgeo.computeBoundingBox();
-
+        log("Faces: " + STLgeo.faces.length);
         var cX,cY;
         cX = (STLgeo.boundingBox.max.x + STLgeo.boundingBox.min.x)/2;
         cY = (STLgeo.boundingBox.max.y + STLgeo.boundingBox.min.y)/2;
 
         STLgeo.translate((Box.x/2)-cX,(Box.y/2)-cY,-STLgeo.boundingBox.min.z);
         STLgeo.computeFaceNormals();
-        STLmesh = new THREE.Mesh( STLgeo, STLmaterial );
-        scene.add( STLmesh );   
-        render();      
+
+        Models.add(new THREE.Mesh( STLgeo, STLmaterial ));
+
+        render();
       });   
     }
 
@@ -321,6 +338,39 @@
         loadSTL(this.value);
       }, false); 
     }
+    var dz = 0.01
+    function slice(mes,z)
+    {
+
+      var start = 0;
+      var start0 = 0;
+      var end = 0;
+      start0 = start = new Date().getTime();
+
+      var cube_geometry = new THREE.CubeGeometry( Box.x, Box.y, dz/2 );
+      cube_geometry.translate(Box.x/2,Box.y/2,z);
+      var cube_mesh = new THREE.Mesh( cube_geometry );
+      var cube_bsp = new ThreeBSP( cube_mesh );
+            
+      start = new Date().getTime();      
+      log("Start cut");
+      var cut_bsp = STL_bsp.intersect(cube_bsp);
+      end = new Date().getTime();
+      log("End cut: " + ((end - start) / 1000) + "s" );
+      
+      start = new Date().getTime();      
+      log("BSP to STL");
+      var result = cut_bsp.toMesh( STLmaterial );
+      end = new Date().getTime();
+      log("End BSP to STL: " + ((end - start) / 1000) + "s" );
+      log("Total: " + ((end - start0) / 1000) + "s" );      
+      result.geometry.computeVertexNormals();
+      scene.add( result );
+      render();
+    };
+
+
+
   </script>
 </body>
 </html>

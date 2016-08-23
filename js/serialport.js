@@ -13,12 +13,9 @@ function refleshPort() {
     });
 
     if(portList.length == 0) {
-      $('#port-list').append('<li id="no-mech" onclick="refleshPort()"><a >無可用機器請點擊刷新</a></li>');
-      //log("NO port"); 
-    }
-    else {
-      //log("Have ports:" + portList.toString());
-    }    
+      $('#port-list').append('<li id="no-mech" onclick="refleshPort()"><a>No any device</a></li>');
+      
+    }   
   });
 }
 function openPort() {
@@ -29,7 +26,7 @@ function openPort() {
     port.open();
   }        
   else
-    log("port was opened");
+    log("Port was opened");
 }
 function closePort() {
   if(port.isOpen())
@@ -39,11 +36,16 @@ function closePort() {
     port.close();
   }        
   else
-    log("port was closed");
+    log("Port was closed");
 }
 function sendCommand(command) {
-  port.write( command + '\n');
-  log("CMD: " + command);
+
+  log("COMMAND: " + command);
+  if(port.isOpen)
+    port.write( command + '\n');
+  else
+    log("ERROR: doesn't connet any device");
+  
 }
 function emergencyStop() {
   sendCommand('M112');
@@ -57,7 +59,7 @@ function settingPort(portName , baud) {
   });
 
   port.on('error',function (err){
-    log('Error: ' + err.message);
+    log('ERROR: ' + err.message);
   });
   port.on('open', function () {
     log('Open port: ' + port.path);
