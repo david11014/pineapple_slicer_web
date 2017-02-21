@@ -4,74 +4,6 @@
 		"selected_items":
 		[
 			[
-				"rend",
-				"render"
-			],
-			[
-				"mes",
-				"meshName"
-			],
-			[
-				"O",
-				"isOpen"
-			],
-			[
-				"le",
-				"length"
-			],
-			[
-				"STL",
-				"STLmesh"
-			],
-			[
-				"rem",
-				"removeObj"
-			],
-			[
-				"sc",
-				"scene"
-			],
-			[
-				"go",
-				"geometry"
-			],
-			[
-				"cube",
-				"cube_bsp"
-			],
-			[
-				"tra",
-				"translate"
-			],
-			[
-				"cube_",
-				"cube_geometry"
-			],
-			[
-				"to",
-				"toString"
-			],
-			[
-				"bo",
-				"boundingBox"
-			],
-			[
-				"con",
-				"console"
-			],
-			[
-				"add",
-				"addClass	.addClass()"
-			],
-			[
-				"fo",
-				"forEach"
-			],
-			[
-				"port",
-				"portList"
-			],
-			[
 				"margin",
 				"margin-bottom"
 			],
@@ -96,7 +28,15 @@
 				"send-command"
 			],
 			[
+				"STL",
+				"STLgeo"
+			],
+			[
 				"B",
+				"Box"
+			],
+			[
+				"bo",
 				"Box"
 			],
 			[
@@ -114,6 +54,10 @@
 			[
 				"ba",
 				"background-color"
+			],
+			[
+				"con",
+				"control_block"
 			],
 			[
 				"Bo",
@@ -160,8 +104,16 @@
 				"position"
 			],
 			[
+				"tra",
+				"transition"
+			],
+			[
 				"margin-",
 				"margin-left"
+			],
+			[
+				"fo",
+				"font-size"
 			],
 			[
 				"wi",
@@ -203,39 +155,20 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 11967,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/serialport.js",
-			"settings":
-			{
-				"buffer_size": 1566,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/main.css",
-			"settings":
-			{
-				"buffer_size": 506,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/main.js",
-			"settings":
-			{
-				"buffer_size": 1554,
+				"buffer_size": 11980,
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "Packages/User/untitled.sublime-build",
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -271,7 +204,11 @@
 	},
 	"console":
 	{
-		"height": 167.0
+		"height": 167.0,
+		"history":
+		[
+			"import urllib2,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')"
+		]
 	},
 	"distraction_free":
 	{
@@ -282,14 +219,14 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/C/Users/chestnut/pineapple_slicer_web",
+		"/C/Users/chestnut/pineapple_slicer_web/res"
+	],
 	"file_history":
 	[
-		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/serialport.js",
-		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/index.html",
-		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/jquery-2.1.1.min.js",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/main.js",
-		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/package.json",
-		"/C/Users/user/AppData/Roaming/Sublime Text 2/Packages/User/untitled.sublime-build",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/js/TrackballControls.js",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/run_debug.bat",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/css/uikit.css",
@@ -297,7 +234,9 @@
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/package.bat",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/release_debug.bat",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/release.bat",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/package.json",
 		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/pineapple_slicer_web.sublime-project",
+		"/C/Users/user/Documents/GitHub/pineapple_slicer_web/index.html",
 		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/config.rb",
 		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/package.bat",
 		"/C/Users/user/Google 雲端硬碟/專題/pineapple_slicer_web/js/TrackballControls.js",
@@ -354,7 +293,7 @@
 	],
 	"find":
 	{
-		"height": 70.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -369,12 +308,6 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"STLgeo",
-			"STLmesh",
-			"STLbsp",
-			"resizeThree",
-			"== ",
-			"});\n",
 			"console.log",
 			"=\"#\">",
 			" ></",
@@ -434,54 +367,25 @@
 				{
 					"buffer": 0,
 					"file": "index.html",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11967,
+						"buffer_size": 11980,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10997,
-								10997
+								511,
+								511
 							]
 						],
 						"settings":
 						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
 							"is_init_dirty_state": false,
 							"origin_encoding": "UTF-8",
-							"spell_check": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5876.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/serialport.js",
-					"settings":
-					{
-						"buffer_size": 1566,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								99,
-								99
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -489,68 +393,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "css/main.css",
-					"settings":
-					{
-						"buffer_size": 506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								278,
-								278
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 144.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/main.js",
-					"settings":
-					{
-						"buffer_size": 1554,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1499,
-								1499
-							]
-						],
-						"settings":
-						{
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai.tmTheme",
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 720.0,
-						"zoom_level": 1.0
-					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -558,7 +401,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 45.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -587,22 +430,21 @@
 		]
 	},
 	"menu_visible": true,
-	"output.exec":
-	{
-		"height": 35.0
-	},
 	"output.find_results":
 	{
 		"height": 162.0
 	},
+	"pinned_build_system": "",
+	"project": "pineapple_slicer_web.sublime-project",
 	"replace":
 	{
-		"height": 74.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
@@ -611,15 +453,32 @@
 	"select_project":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 254.0,
-	"status_bar_visible": true
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
